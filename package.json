@@ -1,0 +1,26 @@
+{
+  "name": "mongodbtoko",
+  "version": "1.0.0",
+  "description": "monggo rest api",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --watchAll --verbose --runInBand"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016\u0016https://github.com/alfanshter/API_TokoOnline.git"
+  },
+  "keywords": [
+    "api",
+    "toko",
+    "online"
+  ],
+  "author": "alfanshter",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.13"
+  }
+}
