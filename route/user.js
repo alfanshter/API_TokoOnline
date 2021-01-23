@@ -1,8 +1,8 @@
 const express = require('express');
-const Users = require('../model/Users');
 const router = express.Router();
 const usersmodel = require('../model/Users')
 
+const verifytoken = require('../route/verifiytoken')
 
 //CREATE
 router.post('/', async(req, res) => {
@@ -20,7 +20,7 @@ router.post('/', async(req, res) => {
 }); 
 
 //READ
-router.get('/', async (req,res)=>{
+router.get('/', verifytoken, async (req,res)=>{
     try{
         const read_user = await usersmodel.find()
          res.json(read_user);
