@@ -1,13 +1,17 @@
 const express = require('express')
-const app = express()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require("cors")
+const morgan = require('morgan')
+
+const app = express()
+app.use(bodyParser.json());
+
 require('dotenv/config')
 
 // Middleware
 app.use(cors())
-app.use(bodyParser())
+app.use(morgan('dev'));
 
 //import route
 const userRoute = require('./route/user')
@@ -16,6 +20,12 @@ const AuthRoute = require('./route/auth')
 app.use('/api/data', userRoute);
 app.use('/api/users', AuthRoute);
 
+app.use((req,res)=>{
+    res.status(400).json({
+        status : res.statusCode,
+        message : 'Page not found'
+    });
+});
 //connect db
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology : true})
 let db = mongoose.connection

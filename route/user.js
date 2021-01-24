@@ -5,7 +5,14 @@ const usersmodel = require('../model/Users')
 const verifytoken = require('../route/verifiytoken')
 
 //CREATE
-router.post('/', async(req, res) => {
+
+router.post('/databarang', async (req, res) => {
+    const barang_post = new usersmodel({
+        
+    })
+
+});
+router.post('/databarang', async(req, res) => {
     const user_post = new usersmodel({
         username: req.body.username,
         email : req.body.email

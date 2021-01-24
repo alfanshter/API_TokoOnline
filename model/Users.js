@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     nama:{
         type : String,
         required : true,
@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
     email:{
         type : String,
         required : true,
-        max: 100
+        max: 100,
+        unique : true
     },
 
     password:{
@@ -21,7 +22,20 @@ const userSchema = mongoose.Schema({
     created_at:{
         type : Date,
         default : Date.now
-    }
+    },
+
+    role : {
+        type : Number,
+        default : 0
+    },
+    avatar : {
+        type : String,
+        required : true
+    },
+    history :{
+        type : Array,
+        default : [],
+    },
 
 })
 

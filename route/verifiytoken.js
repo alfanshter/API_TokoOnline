@@ -5,19 +5,22 @@ const verifytoken = (req,res,next)=>{
     if(!token) return   res.status(400).json({
         status : res.statusCode,
         message : 'Akses Denied'
-    });  
+    }) 
   
-
     try{
         const verified = jwt.verify(token,process.env.SECRET_KEY)
-        req.user = verified
+        req.user = verified.id
+        // res.status(200).json({
+        //     status : res.statusCode,
+        //     message : verified.id
+        // })
         next()
         
     }catch(err){
         res.status(400).json({
             status : res.statusCode,
             message : 'Invalid Token'
-        });
+        })
     }
 }
 

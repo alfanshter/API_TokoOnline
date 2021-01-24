@@ -9,7 +9,9 @@ const registervalidasi = (data)=>{
                 .email(),
         password: Joi.string()
                 .required()
-                .min(6)
+                .min(6),
+        avatar: Joi.string()
+                .required()
     })
 
     return schema.validate(data)
