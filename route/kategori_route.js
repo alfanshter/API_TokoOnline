@@ -72,11 +72,9 @@ router.get('/:kategori_Id', kategory_Id, async (req, res) => {
 //@route put api/users/kategori/:kategori_Id
 //@desc  Update single kategori
 //@Access Admin
-
 router.put('/:kategori_Id', auth,AdminAuth,kategory_Id, async (req, res) => {
         let kategori = req.kategori
-        console.log(req.kategori)
-
+     
         const {nama} = req.body // ambil dari postman
 
         if(nama){
@@ -101,6 +99,26 @@ router.put('/:kategori_Id', auth,AdminAuth,kategory_Id, async (req, res) => {
 
 });
 
+//@route delete api/users/kategori/:kategori_Id
+//@desc  delete single kategori
+//@Access Admin
+router.delete('/:kategori_Id', auth, AdminAuth,kategory_Id, async (req, res) => {
+
+    let delete_kategori = req.kategori
+    try {
+        let deleteKategori = await delete_kategori.remove()
+         res.json({
+            message : `${deleteKategori.nama} delete sukses`
+         });
+
+        delete_kategori = await delete_kategori.d
+    } catch (error) {  
+        console.log(error.message)
+        res.status(400).send('Server error');
+        
+    }
+
+});
 
  module.exports = router
 
