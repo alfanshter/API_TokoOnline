@@ -66,11 +66,10 @@ router.post('/register',[
 
      await user.save()
 
-    const payload ={
-        usersmodel:{
-            id : usersmodel._id
-        }
-    }
+     const payload = {
+        id: {ids: emailExist._id}
+         }
+
 
     jwt.sign(
         payload,
@@ -135,7 +134,7 @@ router.post('/login', async (req, res) => {
             });
 
         const payload = {
-            id: {id: emailExist._id}
+            id: {ids: emailExist._id}
              }
 
         jwt.sign(payload,process.env.SECRET_KEY,{

@@ -16,9 +16,12 @@ app.use(morgan('dev'));
 //import route
 const userRoute = require('./route/user')
 const AuthRoute = require('./route/auth')
+const kategoriRoute = require('./route/kategori_route')
+
 //route yang digunakan
 app.use('/api/data', userRoute);
 app.use('/api/users', AuthRoute);
+app.use('/api/kategori', kategoriRoute);
 
 app.use((req,res)=>{
     res.status(400).json({

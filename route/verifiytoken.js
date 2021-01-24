@@ -10,10 +10,6 @@ const verifytoken = (req,res,next)=>{
     try{
         const verified = jwt.verify(token,process.env.SECRET_KEY)
         req.user = verified.id
-        // res.status(200).json({
-        //     status : res.statusCode,
-        //     message : verified.id
-        // })
         next()
         
     }catch(err){
