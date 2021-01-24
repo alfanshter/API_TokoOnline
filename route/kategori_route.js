@@ -3,6 +3,7 @@
  const auth = require('../route/verifiytoken')
  const AdminAuth = require('../middleware/admin_auth')
  const Kategori = require('../model/kategori_model')
+ const kategory_Id = require('../middleware/kategori_ID')
 
  const {check, validationResult } = require('express-validator');
 const { route } = require('./user');
@@ -56,6 +57,11 @@ router.get('/all', async (req, res) => {
             message : 'Server Error'
         })
     }
+
+});
+
+router.get('/:kategori_Id', kategory_Id, async (req, res) => {
+     res.json(req.kategori);
 
 });
 
