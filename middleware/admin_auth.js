@@ -7,7 +7,7 @@ module.exports = async function (req,res,next) {
             _id: req.user.ids
         })
 
-        console.log(user)
+        // console.log(user)
 
         if(user.role === 0){
             return res.status(400).json({

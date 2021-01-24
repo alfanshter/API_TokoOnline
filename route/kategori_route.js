@@ -45,8 +45,9 @@ const { route } = require('./user');
  
  })
 
-// membaca kategori 
-//ini adalah kategori Access /api/users/kategori/all
+//@route get api/users/kategori/all
+//@desc  get all kategori
+//@Access Public
 router.get('/all', async (req, res) => {
     try {
         const read_kategori = await Kategori.find()
@@ -60,10 +61,46 @@ router.get('/all', async (req, res) => {
 
 });
 
+//@route get api/users/kategori/:kategori_Id
+//@desc  get single kategori
+//@Access Public
 router.get('/:kategori_Id', kategory_Id, async (req, res) => {
      res.json(req.kategori);
 
 });
+
+//@route put api/users/kategori/:kategori_Id
+//@desc  Update single kategori
+//@Access Admin
+
+router.put('/:kategori_Id', auth,AdminAuth,kategory_Id, async (req, res) => {
+        let kategori = req.kategori
+        console.log(req.kategori)
+
+        const {nama} = req.body // ambil dari postman
+
+        if(nama){
+            kategori.nama = nama.trim()
+        }
+        try {
+            let nama_kategori = await Kategori.findOne({nama})
+            if(nama_kategori){
+                return res.status(400).json({
+                    status : res.statusCode,
+                    message: 'Nama kategori sama'
+                });
+            }
+
+            kategori = await kategori.save()
+             res.json(kategori);
+        } catch (error) {
+            console.log(error.message)
+            res.status(400).send('Server Error');
+            
+        }
+
+});
+
 
  module.exports = router
 

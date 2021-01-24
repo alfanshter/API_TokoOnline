@@ -4,6 +4,7 @@ const Kategori = require('../model/kategori_model')
 module.exports = async function (req,res,next) {
     const {kategori_Id} = req.params
 
+
     if(!moongose.Types.ObjectId.isValid(kategori_Id)){
         return res.status(400).json({
             status : res.statusCode,
