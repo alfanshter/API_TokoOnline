@@ -17,11 +17,13 @@ app.use(morgan('dev'));
 const userRoute = require('./route/user')
 const AuthRoute = require('./route/auth')
 const kategoriRoute = require('./route/kategori_route')
+const ProdukRoute = require('./route/Produk_Route')
 
 //route yang digunakan
 app.use('/api/data', userRoute);
 app.use('/api/users', AuthRoute);
 app.use('/api/kategori', kategoriRoute);
+app.use('/api/produk', ProdukRoute);
 
 app.use((req,res)=>{
     res.status(400).json({
